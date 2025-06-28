@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
 
         rigidBody.freezeRotation = true;
-        spawnPos = transform.position;
+        SetPlayerSpawn();
     }
 
     // Update is called once per frame
@@ -46,11 +46,11 @@ public class PlayerController : MonoBehaviour
     }
 
     //function to control movement of parent object (player)
-    void Movement()
+    private void Movement()
     {
         //horizontal (left & right) movement
         var moveX = Input.GetAxis("Horizontal"); //get axis of movement (direction of movement)
-        rigidBody.velocity = new Vector2(moveX * moveSpeed * Time.deltaTime, rigidBody.velocity.y); //update velocity (movement in a direction) with a new vector2 (vector 2 is (x, y) coordinates)
+        rigidBody.velocity = new Vector2((moveX * moveSpeed), rigidBody.velocity.y); //update velocity (movement in a direction) with a new vector2 (vector 2 is (x, y) coordinates)
         
         if(moveX > 0) 
         {
@@ -70,9 +70,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ResetPlayerPos()
+    public void ResetPlayerPos()
     {
         transform.position = spawnPos;
+    }
+    
+    public void SetPlayerSpawn()
+    {
+        spawnPos = transform.position;
     }
 
 
@@ -83,6 +88,11 @@ public class PlayerController : MonoBehaviour
         {
             //if they do, the player is no longer jumping
             isJumping = false;
+        }
+        
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            this.transform.Translate(Vector3.down * Time.deltaTime, Space.World);
         }
 
         if (collision.gameObject.CompareTag("Hazard"))
