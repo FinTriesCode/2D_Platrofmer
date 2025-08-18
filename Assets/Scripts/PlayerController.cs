@@ -4,9 +4,6 @@ using UnityEngine;
 
 /// <summary>
 /// 
-///Created by: Harry Findlay on behalf of CODE KIDS
-/// 
-/// 
 /// This is a basic 2D player controller featuring horizontal movement, jumping, and setting up of various aspect in-script such as rigidbody2d.
 /// 
 /// </summary>
@@ -52,15 +49,6 @@ public class PlayerController : MonoBehaviour
         var moveX = Input.GetAxis("Horizontal"); //get axis of movement (direction of movement)
         rigidBody.velocity = new Vector2((moveX * moveSpeed), rigidBody.velocity.y); //update velocity (movement in a direction) with a new vector2 (vector 2 is (x, y) coordinates)
         
-        if(moveX > 0) 
-        {
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
-        }
-        if (moveX < 0)
-        {
-            gameObject.transform.localScale = new Vector3(-1, 1, 1);
-        }
-
 
         //vertical movement (jump -> up and down)
         if (Input.GetButtonDown("Jump") && !isJumping)

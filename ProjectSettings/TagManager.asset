@@ -11,7 +11,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Walls
+  - 
   - Water
   - UI
   - 
@@ -25,7 +25,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Walls
   - background
   - 
   - 
@@ -39,7 +39,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Player
   m_SortingLayers:
   - name: Default
     uniqueID: 0
