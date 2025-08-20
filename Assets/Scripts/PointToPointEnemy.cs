@@ -7,8 +7,10 @@ public class PointToPointEnemy : MonoBehaviour
 {
     [SerializeField] 
     private float movementSpeed = 5f;
+    
     [SerializeField]
     private GameObject startPos;
+    
     [SerializeField]
     private GameObject endPos;
 
@@ -52,12 +54,11 @@ public class PointToPointEnemy : MonoBehaviour
         }
     }
 
-    //conflicts with EnemyPatrol
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Hazard"))
-    //     {
-    //         rigidBody.velocity = new Vector3(movementSpeed *= -1, 0, 0); //switch direction
-    //     }
-    // }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(startPos.transform.position, .5f);
+        Gizmos.DrawSphere(endPos.transform.position, .5f);
+        Gizmos.DrawLine(startPos.transform.position, endPos.transform.position);
+    }
 }
