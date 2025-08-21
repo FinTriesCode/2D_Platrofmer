@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         //call any and all relevent functions
         Movement();
+        ExitGame();
     }
 
     //function to control movement of parent object (player)
@@ -57,6 +58,12 @@ public class PlayerController : MonoBehaviour
             isJumping = true; //update bool check
         }
     }
+
+    private void ExitGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+    }
+    
 
     public void ResetPlayerPos()
     {
