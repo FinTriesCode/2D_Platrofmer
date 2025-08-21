@@ -93,10 +93,14 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Hazard"))
         {
             ResetPlayerPos();
-            GameManager.IncreaseScore(10);
+            GameManager.DecreaseScore(10);
             GameManager.DecreasePlayerLives(1);
         }
         
-        
+        if (collision.gameObject.CompareTag("Objective"))
+        {
+            ResetPlayerPos();
+            GameManager.IncreaseScore(100);
+        }
     }
 }

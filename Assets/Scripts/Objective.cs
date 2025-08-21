@@ -17,10 +17,5 @@ public class Objective : MonoBehaviour
             SceneManager.LoadScene(sceneToLoad);
             Debug.Log($"Scene: {sceneToLoad} was loaded. ");
         }
-
-        if (other.collider.CompareTag("Objective"))
-        {
-            GameManager.IncreaseScore(100);
-        }
     }
 }
