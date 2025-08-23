@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 {
 
     //define and initialise variables
+    
+    //a serializefield allows for the user to assign the variable data within the game engine, whilst keeping a private scope.
     [SerializeField]
     public float moveSpeed = 5f;
 
@@ -31,19 +33,20 @@ public class PlayerController : MonoBehaviour
         //get and attach the rigid body to the player's (the parent object's) rigid body
         rigidBody = GetComponent<Rigidbody2D>();
 
+        //freeze rotation to stop the player from 'falling over'.
         rigidBody.freezeRotation = true;
         SetPlayerSpawn();
     }
 
-    // Update is called once per frame
+    //update is called once per tick.
     void Update()
     {
-        //call any and all relevent functions
+        //call any and all relevent functions.
         Movement();
         ExitGame();
     }
 
-    //function to control movement of parent object (player)
+    //function to control movement of parent object (player).
     private void Movement()
     {
         //horizontal (left & right) movement
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
         
 
         //vertical movement (jump -> up and down)
+        //a boolean is used to prevent the player from spamming jump and being able to 'fly'.
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rigidBody.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse); //apply an upwards impulse (an impulse is a force that happens suddenly. Like a push. Rather than a constant force such as a car moving foward)
@@ -65,6 +69,7 @@ public class PlayerController : MonoBehaviour
     }
     
 
+    //a few setter and getter functions to allow for player position manipulation.
     public void ResetPlayerPos()
     {
         transform.position = spawnPos;
@@ -76,6 +81,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    //this is a collision check, in this case, it checks to see if the player colliders with other gameobjects.
     void OnCollisionEnter2D(Collision2D collision)
     {
         //check if the collision was with the ground   -   NOTE: make sure platforms have a tag "Ground", this is set in the top of the inspector.
